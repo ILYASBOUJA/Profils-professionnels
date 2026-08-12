@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي | ورشاتي وأنشطتي التعليمية</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Tajawal for modern Arabic typography) -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+        }
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom Hover Effect for Gallery Items */
+        .gallery-item {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .gallery-item img {
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-item .overlay {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-img {
+            max-width: 85%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: scaleIn 0.3s;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .lightbox-close:hover {
+            color: #ef4444;
+        }
+        .lightbox-caption {
+            color: white;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { from { transform: scale(0.9); } to { transform: scale(1); } }
+    </style>
+</head>
+<body class="text-slate-800">
+        <!-- ============================
+             القسم الأول: ورشات الإعلاميات للأطفال
+        ============================= -->
+        <section class="mb-20">
+            <div class="flex items-center gap-4 mb-8 border-r-4 border-blue-600 pr-4">
+                <i class="fas fa-laptop-code text-3xl text-blue-600"></i>
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900">ورشات الإعلاميات للأطفال</h3>
+                    <p class="text-slate-500">جلسات تعليمية تفاعلية في البرمجة، التكنولوجيا، واستخدام الحاسوب للأطفال.</p>
+                </div>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- صورة 1 -->
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-[4/3]" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/3b6edae4-2b3e-48c4-8278-c312e20f75c7.jpeg?auth_key=1886533521-79a2dd8f8d744028bb481299bd6ecaef-0-eba3bbab8601993b5a1ab182d8c1f468" alt="ورشة إعلاميات" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
+                        <h4 class="text-white font-bold text-lg">شرح تفاعلي للبرمجة</h4>
+                        <p class="text-slate-200 text-sm">توجيه الأطفال خلال تطبيقات عملية على الحاسوب.</p>
+                    </div>
+                </div>
+                <!-- صورة 2 -->
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-[4/3]" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/8ec5f849-f0c7-49a9-bbca-e2baf88d6934.jpeg?auth_key=1886533521-adc27f36deb44b47ac01e45133667432-0-58b4590f9d3cb644d25b681f4213f253" alt="جلسة جماعية" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
+                        <h4 class="text-white font-bold text-lg">تطبيقات عملية</h4>
+                        <p class="text-slate-200 text-sm">بيئة تعليمية محفزة لاستكشاف التكنولوجيا.</p>
+                    </div>
+                </div>
+                <!-- صورة 3 -->
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-[4/3]" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/c4c625db-7369-4558-8b81-190174512348.jpeg?auth_key=1886533521-a1731096bac1468298e1895f9118eefc-0-227b4986ce288061bde328ef12f29e51" alt="ورشة برمجة" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
+                        <h4 class="text-white font-bold text-lg">تفكيك الأجهزة</h4>
+                        <p class="text-slate-200 text-sm">تعليم الأطفال مكونات الحاسوب بطريقة ممتعة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================
+             القسم الثاني: أنشطة الأطفال
+        ============================= -->
+        <section class="mb-20">
+            <div class="flex items-center gap-4 mb-8 border-r-4 border-amber-500 pr-4">
+                <i class="fas fa-child text-3xl text-amber-500"></i>
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900">أنشطة الأطفال</h3>
+                    <p class="text-slate-500">لحظات تعليمية، ترفيهية، وإبداعية تجمع بين المرح والفائدة.</p>
+                </div>
+            </div>
+
+            <!-- Grid Layout (تصميم مختلف قليلاً للحفاظ على التنوع البصري) -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- صورة كبيرة تأخذ مساحة عمودين -->
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer col-span-2 row-span-2 aspect-square sm:aspect-auto" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/52da8681-afc5-4b0c-a6ff-95d4d803c4c4.jpeg?auth_key=1886533521-50f7fd7be78848ab9ba200887a9b6e88-0-9f95e93433147a9a3504bfab56469739" alt="نشاط ترفيهي" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-amber-900/80 to-transparent flex flex-col justify-end p-4">
+                        <h4 class="text-white font-bold text-lg">تكريم المتميزين</h4>
+                        <p class="text-slate-200 text-sm">ختام الأنشطة بجوائز تشجعية.</p>
+                    </div>
+                </div>
+                <!-- صور صغيرة -->
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-square" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/7c12bb42-1a9e-4470-8b88-e3ba63f3d758.jpeg?auth_key=1886533521-9040fed45aef4f46a5c858f29f32e880-0-0de8ef1eabbd4646e32290971f3401de" alt="نشاط جماعي" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-amber-900/60 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-square" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/39809885-9459-4892-b129-b6ad00b6242b.jpeg?auth_key=1886533521-aa09630500514a9aae4a99d7b4231a58-0-b532a73b99019de75dcd15d0306707fb" alt="لحظات تفاعل" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-amber-900/60 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-square" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/c4c625db-7369-4558-8b81-190174512348.jpeg?auth_key=1886533521-a1731096bac1468298e1895f9118eefc-0-227b4986ce288061bde328ef12f29e51" alt="نشاط إبداعي" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-amber-900/60 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-square" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/8ec5f849-f0c7-49a9-bbca-e2baf88d6934.jpeg?auth_key=1886533521-adc27f36deb44b47ac01e45133667432-0-58b4590f9d3cb644d25b681f4213f253" alt="تعلم جماعي" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-amber-900/60 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================
+             القسم الثالث: بعض الأنشطة التي شاركت فيها
+        ============================= -->
+        <section class="mb-10">
+            <div class="flex items-center gap-4 mb-8 border-r-4 border-emerald-600 pr-4">
+                <i class="fas fa-user-tie text-3xl text-emerald-600"></i>
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900">بعض الأنشطة التي شاركت فيها</h3>
+                    <p class="text-slate-500">مشاركاتي في الفعاليات، اللقاءات، التكوينات، والأنشطة الجماعية.</p>
+                </div>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-video" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/8f326a01-f627-4ef1-b575-5957b76fc5be.jpeg?auth_key=1886533521-47fe9ed946a0455aa274e7f35dd152e3-0-9797535905eab46bf745d93cda4c6a34" alt="إلقاء محاضرة" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-transparent flex flex-col justify-end p-4">
+                        <h4 class="text-white font-bold text-lg">محاضرة وتدريب</h4>
+                        <p class="text-slate-200 text-sm">التحدث في فعالية جمعية كايزن.</p>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-video" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/fd8dfa46-00fa-453c-b390-99d50cfa1208.jpeg?auth_key=1886533521-cae373abfd5a48d38d95ce39209fca1e-0-323b969c5d8acf0dbc6a824225cd0394" alt="لقاء رسمي" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-transparent flex flex-col justify-end p-4">
+                        <h4 class="text-white font-bold text-lg">لقاءات وشراكات</h4>
+                        <p class="text-slate-200 text-sm">حضور فعال في لقاءات السفارة الأمريكية.</p>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer aspect-video" onclick="openLightbox(this)">
+                    <img src="https://z-cdn-media.chatglm.cn/files/b527e941-b2ca-4350-a185-99a331c73427.jpeg?auth_key=1886533521-cba41e933b79407588639e13128fecb7-0-dd27b23590bed25ce24758e8f665771c" alt="تمثيل رسمي" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-transparent flex flex-col justify-end p-4">
+                        <h4 class="text-white font-bold text-lg">تمثيل ودبلوماسية</h4>
+                        <p class="text-slate-200 text-sm">المشاركة في أنشطة دولية وتبادل ثقافي.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         Lightbox Structure
+    =========================================== -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="صورة مكبرة">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+
+    <!-- ==========================================
+         Footer (استبدل هذا بالـ Footer الخاص بك)
+    =========================================== -->
+    <footer class="bg-slate-900 text-slate-400 py-8 mt-10">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 جميع الحقوق محفوظة - تصميم احترافي للبروفيل التعليمي</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         JavaScript for Lightbox & Interactions
+    =========================================== -->
+    <script>
+        // فتح الـ Lightbox
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            // استخراج رابط الصورة
+            const imgSrc = element.querySelector('img').src;
+            // استخراج العنوان والوصف إن وجدا
+            const title = element.querySelector('h4') ? element.querySelector('h4').innerText : '';
+            const desc = element.querySelector('p') ? element.querySelector('p').innerText : '';
+            
+            lightboxImg.src = imgSrc;
+            lightboxCaption.innerText = title ? `${title} - ${desc}` : '';
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+        }
+
+        // إغلاق الـ Lightbox
+        function closeLightbox(event) {
+            // التأكد من أن الضغط ليس على الصورة نفسها حتى لا تغلق عند التفاعل معها
+            if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto'; // إعادة تفعيل التمرير
+            }
+        }
+
+        // إغلاق الـ Lightbox بزر Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
