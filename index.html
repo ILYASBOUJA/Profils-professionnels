@@ -94,6 +94,14 @@
             border-radius: 20px;
         }
 
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
         /* Hero Section */
         .hero {
             padding: 140px 20px 80px;
@@ -882,11 +890,31 @@
             .tags {
                 justify-content: center;
             }
+            .menu-toggle {
+                display: block;
+            }
             .nav-links {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 20px;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-links.active {
+                display: flex;
             }
             .hero-content h1 {
                 font-size: 2rem;
+            }
+            .hero-image img {
+                max-width: 260px;
+                height: 300px;
             }
         }
     </style>
@@ -897,6 +925,9 @@
     <header>
         <div class="nav-container">
             <a href="#" class="logo">ياسين بوجى | Yassine Bouja</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="#services">الخدمات</a></li>
                 <li><a href="#methods">طرق التعلم</a></li>
@@ -1482,8 +1513,24 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Lightbox Script -->
+    <!-- Scripts -->
     <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking any link on mobile
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Lightbox Functions
         function openLightbox(imgSrc, title, desc) {
             const modal = document.getElementById('imageLightbox');
             const img = document.getElementById('lightboxImg');
