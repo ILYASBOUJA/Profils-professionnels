@@ -62,7 +62,7 @@
 
         .logo {
             font-weight: 900;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--primary);
             text-decoration: none;
         }
@@ -94,14 +94,20 @@
             border-radius: 20px;
         }
 
-        /* Mobile Menu Toggle Button (بخصوص الأشرطة الثلاثة) */
+        /* زر القائمة للهواتف (الأشرطة الثلاثة) - واضح وبارز جداً */
         .menu-toggle {
-            display: none;
-            background: none;
+            display: none; /* مخفي في الحاسوب افتراضياً */
+            background: var(--primary);
+            color: white;
             border: none;
-            font-size: 1.6rem;
-            color: var(--primary);
+            font-size: 1.4rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
             cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         /* Hero Section */
@@ -895,10 +901,10 @@
             transform: scale(1.1);
         }
 
-        /* Responsive Styles (إصلاح الهواتف والأجهزة اللوحية) */
+        /* Responsive Styles (قاعدة ظهور الزر في شاشات الهاتف والطابليت فقط) */
         @media (max-width: 992px) {
             .menu-toggle {
-                display: block;
+                display: flex !important; /* إظهار الزر بقوة في الهواتف */
             }
 
             .nav-links {
@@ -913,11 +919,11 @@
                 gap: 15px;
                 box-shadow: 0 10px 15px rgba(0,0,0,0.05);
                 border-top: 1px solid var(--border);
-                display: none; /* مخفية افتراضياً */
+                display: none; /* مخفية حتى يتم النقر عليها */
             }
 
             .nav-links.active {
-                display: flex; /* تظهر عند الضغط على الزر */
+                display: flex !important; /* تظهر بوضوح عند الضغط على الزر */
             }
 
             .nav-links li {
