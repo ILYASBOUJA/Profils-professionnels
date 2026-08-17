@@ -94,6 +94,16 @@
             border-radius: 20px;
         }
 
+        /* Mobile Menu Toggle Button (بخصوص الأشرطة الثلاثة) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
         /* Hero Section */
         .hero {
             padding: 140px 20px 80px;
@@ -885,11 +895,44 @@
             transform: scale(1.1);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+        /* Responsive Styles (إصلاح الهواتف والأجهزة اللوحية) */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
             }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+                border-top: 1px solid var(--border);
+                display: none; /* مخفية افتراضياً */
+            }
+
+            .nav-links.active {
+                display: flex; /* تظهر عند الضغط على الزر */
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 8px 0;
+                border-bottom: 1px solid #f1f5f9;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2rem;
             }
@@ -902,7 +945,14 @@
     <header>
         <div class="nav-container">
             <a href="#" class="logo">ياسين بوجى | Yassine Bouja</a>
-            <ul class="nav-links">
+            
+            <!-- زر الأشرطة الثلاثة للهواتف -->
+            <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة -->
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#services">الخدمات</a></li>
                 <li><a href="#methods">طرق التعلم</a></li>
                 <li><a href="atelier.html" target="_blank">ورشات الإعلاميات للأطفال</a></li>
@@ -922,7 +972,6 @@
                 <h1>ياسين بوجى</h1>
                 <h2>أستاذ اللغة الإنجليزية ومؤطر في المعلوميات والتصميم</h2>
                 
-                <!-- الصورة أصبحت مباشرة تحت الاسم والمهنة -->
                 <div class="hero-image">
                     <img src="image/img.jpeg" alt="ياسين بوجى - أستاذ ومؤطر تربوي">
                 </div>
@@ -1490,8 +1539,24 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Lightbox Script -->
+    <!-- JavaScript Scripts -->
     <script>
+        /* Mobile Menu Toggle Script (خاص بالزر والأشرطة الثلاثة) */
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // إغلاق القائمة تلقائياً عند الضغط على أي عنصر داخلها في الهاتف
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        /* Lightbox Gallery Script */
         function openLightbox(imgSrc, title, desc) {
             const modal = document.getElementById('imageLightbox');
             const img = document.getElementById('lightboxImg');
@@ -1512,7 +1577,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close on clicking outside content box
         window.addEventListener('click', function(e) {
             const modal = document.getElementById('imageLightbox');
             if (e.target === modal) {
